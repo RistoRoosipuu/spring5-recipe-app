@@ -99,11 +99,12 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         russianNotes.setRecipe(whiteRussianCoffeeRecipe);
         whiteRussianCoffeeRecipe.setNotes(russianNotes);
 
-        whiteRussianCoffeeRecipe.getIngredients().add(new Ingredient("vodka", BigDecimal.valueOf(2),
+
+        whiteRussianCoffeeRecipe.addIngredient(new Ingredient("vodka", BigDecimal.valueOf(2),
                 ounce, whiteRussianCoffeeRecipe));
-        whiteRussianCoffeeRecipe.getIngredients().add(new Ingredient("coffee", BigDecimal.valueOf(1),
+        whiteRussianCoffeeRecipe.addIngredient(new Ingredient("coffee", BigDecimal.valueOf(1),
                 ounce, whiteRussianCoffeeRecipe));
-        whiteRussianCoffeeRecipe.getIngredients().add(new Ingredient("Coconut Milk", BigDecimal.valueOf(1),
+        whiteRussianCoffeeRecipe.addIngredient(new Ingredient("Coconut Milk", BigDecimal.valueOf(1),
                 tablespoon, whiteRussianCoffeeRecipe));
 
         recipeList.add(whiteRussianCoffeeRecipe);
