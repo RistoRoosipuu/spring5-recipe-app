@@ -5,6 +5,16 @@
     <title>Recipe Project</title>
 </head>
 <body>
-<h1>This is the Spring Recipe project</h1>
+    <h1>This is the Spring Recipe project</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+        </tr>
+        <tr th:each="recipe : ${recipes}">
+            <td th:text="${recipe.id}">123</td>
+            <td th:text="${recipe.description}">Good drinks</td>
+        </tr>
+    </table>
 </body>
 </html>
