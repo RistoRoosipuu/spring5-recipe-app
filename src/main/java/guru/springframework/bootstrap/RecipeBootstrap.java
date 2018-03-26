@@ -88,6 +88,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         Category whiteRussian = russianCoffeeOptional.get();
         Category irish = irishCoffeeOptional.get();
 
+        //Recipe 1
         Recipe whiteRussianCoffeeRecipe = new Recipe();
         whiteRussianCoffeeRecipe.setDescription("White Russian cocktail made with vodka, coffee liqueur," +
                 " and coconut milk. Vegan and dairy-free so that all your guests can have a glass!");
@@ -112,6 +113,33 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 tablespoon, whiteRussianCoffeeRecipe));
 
         recipeList.add(whiteRussianCoffeeRecipe);
+
+        //Recipe 2
+
+        Recipe dummyRecipe = new Recipe();
+        dummyRecipe.setDescription("Dummy Recipe to check that everything works correctly");
+        dummyRecipe.setPrepTime(0);
+        dummyRecipe.setCookTime(0);
+        dummyRecipe.setDifficulty(Difficulty.MODERATE);
+        dummyRecipe.setDirections("Fill a rocks glass with ice. Add the vodka and coffee liqueur and give it a " +
+                "quick swirl or two to mix. Top with a generous splash of coconut milk and serve. Stir together if you desire.");
+        Notes dummyNotes = new Notes();
+        dummyNotes.setRecipeNotes("Please, please, please don’t use cheap vodka for this. It’s the main ingredient and" +
+                " you can’t make a good cocktail with bad booze. I highly recommend Tito’s Vodka as its widely available," +
+                " affordable, and smooth.");
+        dummyNotes.setRecipe(dummyRecipe);
+        dummyRecipe.setNotes(dummyNotes);
+
+
+        dummyRecipe.addIngredient(new Ingredient("vodka", BigDecimal.valueOf(2),
+                ounce, dummyRecipe));
+        dummyRecipe.addIngredient(new Ingredient("coffee", BigDecimal.valueOf(1),
+                ounce, dummyRecipe));
+        dummyRecipe.addIngredient(new Ingredient("Coconut Milk", BigDecimal.valueOf(1),
+                tablespoon, dummyRecipe));
+
+        recipeList.add(dummyRecipe);
+
 
 
         return recipeList;

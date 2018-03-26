@@ -3,18 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Recipe Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <h1>This is the Spring Recipe project</h1>
-    <table>
+<h1>This is the Spring Recipe project</h1>
+
+<!-- Super basic bootstrap, no rows or alignment -->
+<div class="table-responsive" th:if="${not#lists.isEmpty(recipes)}" style="margin-top: 20px">
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>ID</th>
-            <th>Description</th>
+            <th scope="col">#</th>
+            <th scope="col">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:remove="all">
+            <td scope="row" th:text="${recipe.id}">1</td>
+            <td th:text="${recipe.description}">Tasty</td>
+        </tr>
+        <tr th:remove="all">
+            <td scope="row" th:text="${recipe.id}">2</td>
+            <td th:text="${recipe.description}">Tasty</td>
         </tr>
         <tr th:each="recipe : ${recipes}">
             <td th:text="${recipe.id}">123</td>
             <td th:text="${recipe.description}">Good drinks</td>
         </tr>
+        </tbody>
     </table>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>
