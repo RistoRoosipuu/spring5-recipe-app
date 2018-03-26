@@ -24,6 +24,10 @@ public class CategoryTest {
 
     @Test
     public void getDescription() {
+        String description = "Hello world";
+        category.setDescription(description);
+
+        assertEquals(description, category.getDescription());
     }
 
     @Test
