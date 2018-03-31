@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}">
+</head>
+<body>
+<h1>This is the Spring Recipe project</h1>
+
+<div>
+    <form th:object="${recipe}" th:action="@{/recipe/}">
+        <input type="hidden" th:field="*{id}"/>
+        <h1>Edit Recipe Information</h1>
+        <br>
+        <label>Recipe Description</label>
+        <input type="text" class="form-control" th:field="*{description}"/>
+        <br>
+        <br>
+        <label>Prep Time</label>
+        <input type="text" class="form-control" th:field="*{prepTime}"/>
+        <br>
+        <br>
+        <label>Cook Time</label>
+        <input type="text" class="form-control" th:field="*{cookTime}"/>
+        <br>
+        <br>
+        <label>Difficulty</label>
+        <select class="form-control">
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Hard</option>
+        </select>
+        <br>
+        <br>
+        <label>Servings</label>
+        <input type="text" class="form-control" th:field="*{servings}"/>
+        <br>
+        <br>
+        <label>Source</label>
+        <input type="text" class="form-control" th:field="*{source}"/>
+        <br>
+        <br>
+        <label>URL</label>
+        <input type="text" class="form-control" th:field="*{url}"/>
+        <br>
+        <br>
+        <h1>Ingredients</h1>
+        <a class="btn btn-default" href="#" role="button">Edit</a>
+        <br>
+        <ul>
+            <li th:remove="all">1 cup of milk</li>
+            <li th:remove="all">1 teapsoon of sm</li>
+            <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.getAmount()
+                    + ' ' + ingredient.uom.getDescription() + ' ' + ingredient.getDescription()}">1 Teaspoon or sm</li>
+        </ul>
+        <br>
+        <label>Description</label>
+        <textarea class="form-control" rows="3" th:field="*{directions}"></textarea>
+        <br>
+        <br>
+        <h1>Notes</h1>
+        <br>
+        <textarea class="form-control" rows="3" th:field="*{notes.recipeNotes}"></textarea>
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+        th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"
+></script>
+</body>
+</html>

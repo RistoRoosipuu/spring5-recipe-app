@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 @Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
@@ -117,6 +118,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         //Recipe 2
 
         Recipe dummyRecipe = new Recipe();
+
         dummyRecipe.setDescription("Dummy Recipe to check that everything works correctly");
         dummyRecipe.setPrepTime(0);
         dummyRecipe.setCookTime(0);
@@ -138,6 +140,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         dummyRecipe.addIngredient(new Ingredient("Coconut Milk", BigDecimal.valueOf(1),
                 tablespoon, dummyRecipe));
 
+        dummyRecipe.getCategories().add(whiteRussian);
+        dummyRecipe.getCategories().add(irish);
         recipeList.add(dummyRecipe);
 
 
