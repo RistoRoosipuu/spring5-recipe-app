@@ -8,11 +8,10 @@
           th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}">
 </head>
 <body>
-<h1>This is the Spring Recipe project</h1>
-<a href="#" th:href="@{/recipe/new/}">New Recipe</a>
+<h1>Ingredient html</h1>
 
 <!-- Super basic bootstrap, no rows or alignment -->
-<div class="table-responsive" th:if="${not#lists.isEmpty(recipes)}" style="margin-top: 20px">
+<div class="table-responsive" th:if="${not#lists.isEmpty(recipe.ingredients)}" style="margin-top: 20px">
     <table class="table">
         <thead class="thead-dark">
         <tr>
@@ -25,25 +24,25 @@
         </thead>
         <tbody>
         <tr th:remove="all">
-            <td scope="row" th:text="${recipe.id}">1</td>
-            <td th:text="${recipe.description}">Tasty</td>
+            <td scope="row" >1</td>
+            <td>Tasty</td>
             <td><a href="#">View</a> </td>
             <td><a href="#">Update</a> </td>
             <td><a href="#">Delete</a> </td>
         </tr>
         <tr th:remove="all">
-            <td scope="row" th:text="${recipe.id}">2</td>
-            <td th:text="${recipe.description}">Tasty</td>
+            <td scope="row">2</td>
+            <td>Tasty</td>
             <td><a href="#">View</a> </td>
             <td><a href="#">Update</a> </td>
             <td><a href="#">Delete</a> </td>
         </tr>
-        <tr th:each="recipe : ${recipes}">
-            <td th:text="${recipe.id}">123</td>
-            <td th:text="${recipe.description}">Good drinks</td>
-            <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/show'}">View</a></td>
-            <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/update'}">Update</a></td>
-            <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/delete'}">Delete</a></td>
+        <tr th:each="ingredient : ${recipe.ingredients}">
+            <td th:text="${ingredient.id}">123</td>
+            <td th:text="${ingredient.description} + ' ' + ingredient.amount">Good drinks</td>
+            <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/show'}">View</a></td>
+            <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/update'}">Update</a></td>
+            <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/delete'}">Delete</a></td>
         </tr>
         </tbody>
     </table>

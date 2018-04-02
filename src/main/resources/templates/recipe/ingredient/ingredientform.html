@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}">
+</head>
+<body>
+<h1>Ingredient Update Form</h1>
+
+<!-- Super basic bootstrap, no rows or alignment -->
+<form th:object="${ingredient}" th:action="@{'/recipe/' + ${ingredient.getRecipeId()} + '/ingredient'}">
+    <input type="hidden" th:field="*{id}"/>
+    <h2>Edit Ingredient Information</h2>
+    <label>Description</label>
+    <input type="text" class="form-control" th:field="*{description}"/>
+    <br>
+    <label>Amount</label>
+    <input type="number" class="form-control" th:field="*{amount}"/>
+    <br>
+    <label>UnitOfMeasure</label>
+    <select class="form-control" name="unitOfMeasure.id">
+        <option th:each="uomEach : ${unitOfMeasureList}" th:value="${uomEach.id}"
+                th:selected="${uomEach.id.equals(ingredient.unitOfMeasure)}"
+                th:text="${uomEach.description}"> Each
+        </option>
+    </select>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+        th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"
+></script>
+</body>
+</html>

@@ -54,8 +54,10 @@
             <li th:remove="all">1 cup of milk</li>
             <li th:remove="all">1 teapsoon of sm</li>
             <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.getAmount()
-                    + ' ' + ingredient.uom.getDescription() + ' ' + ingredient.getDescription()}">1 Teaspoon or sm</li>
+                    + ' ' + ingredient.unitOfMeasure.getDescription() + ' ' + ingredient.getDescription()}">1 Teaspoon or sm</li>
         </ul>
+        <br>
+        <a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients/'}">View Ingredients</a>
         <br>
         <label>Description</label>
         <textarea class="form-control" rows="3" th:field="*{directions}"></textarea>
