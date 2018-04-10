@@ -14,6 +14,9 @@
     <form th:object="${recipe}" th:action="@{/recipe/}">
         <input type="hidden" th:field="*{id}"/>
         <h1>Edit Recipe Information</h1>
+        <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+            <p>Please Correct Errors Below</p>
+        </div>
         <br>
         <label>Recipe Description</label>
         <input type="text" class="form-control" th:field="*{description}"/>
@@ -21,6 +24,11 @@
         <br>
         <label>Prep Time</label>
         <input type="text" class="form-control" th:field="*{prepTime}"/>
+        <span th:if="${#fields.errors('prepTime')}" class="help.block">
+            <ul>
+                <li th:each="err : ${#fields.errors('prepTime')}" th:text="${err}"/>
+            </ul>
+        </span>
         <br>
         <br>
         <label>Cook Time</label>
