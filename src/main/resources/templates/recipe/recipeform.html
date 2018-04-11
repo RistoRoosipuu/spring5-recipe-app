@@ -6,79 +6,126 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
           th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}">
-</head>
-<body>
-<h1>This is the Spring Recipe project</h1>
 
-<div>
-    <form th:object="${recipe}" th:action="@{/recipe/}">
-        <input type="hidden" th:field="*{id}"/>
-        <h1>Edit Recipe Information</h1>
-        <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-            <p>Please Correct Errors Below</p>
+    <style>
+        body {
+            padding-bottom: 120px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-success p-0">
+    <div class="container">
+        <a href="#" th:href="@{/index}" class="navbar-brand">Recipes</a>
+    </div>
+</nav>
+
+<!-- Header -->
+<header id="main-header" class="py-2 mb-4 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="text-center">Recipe data</h1>
+            </div>
         </div>
-        <br>
-        <label>Recipe Description</label>
-        <input type="text" class="form-control" th:field="*{description}"/>
-        <br>
-        <br>
-        <label>Prep Time</label>
-        <input type="text" class="form-control" th:field="*{prepTime}"/>
-        <span th:if="${#fields.errors('prepTime')}" class="help.block">
-            <ul>
-                <li th:each="err : ${#fields.errors('prepTime')}" th:text="${err}"/>
-            </ul>
-        </span>
-        <br>
-        <br>
-        <label>Cook Time</label>
-        <input type="text" class="form-control" th:field="*{cookTime}"/>
-        <br>
-        <br>
-        <label>Difficulty</label>
-        <select class="form-control">
-            <option>Easy</option>
-            <option>Medium</option>
-            <option>Hard</option>
-        </select>
-        <br>
-        <br>
-        <label>Servings</label>
-        <input type="text" class="form-control" th:field="*{servings}"/>
-        <br>
-        <br>
-        <label>Source</label>
-        <input type="text" class="form-control" th:field="*{source}"/>
-        <br>
-        <br>
-        <label>URL</label>
-        <input type="text" class="form-control" th:field="*{url}"/>
-        <br>
-        <br>
-        <h1>Ingredients</h1>
-        <a class="btn btn-default" href="#" role="button">Edit</a>
-        <br>
-        <ul>
-            <li th:remove="all">1 cup of milk</li>
-            <li th:remove="all">1 teapsoon of sm</li>
-            <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.getAmount()
-                    + ' ' + ingredient.unitOfMeasure.getDescription() + ' ' + ingredient.getDescription()}">1 Teaspoon or sm</li>
-        </ul>
-        <br>
-        <a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients/'}">View Ingredients</a>
-        <br>
-        <label>Description</label>
-        <textarea class="form-control" rows="3" th:field="*{directions}"></textarea>
-        <br>
-        <br>
-        <h1>Notes</h1>
-        <br>
-        <textarea class="form-control" rows="3" th:field="*{notes.recipeNotes}"></textarea>
-        <br>
-        <br>
-        <button type="submit">Submit</button>
-    </form>
-</div>
+    </div>
+</header>
+
+<!-- Recipes -->
+<section id="recipeForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Recipe Data Form</h4>
+                    </div>
+                    <div class="card-body">
+                        <form th:object="${recipe}" th:action="@{/recipe/}">
+                            <input type="hidden" th:field="*{id}"/>
+                            <div class="form-group">
+                                <label>Recipe Description</label>
+                                <input type="text" class="form-control" th:field="*{description}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Prep Time</label>
+                                <input type="text" class="form-control" th:field="*{prepTime}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Cook Time</label>
+                                <input type="text" class="form-control" th:field="*{cookTime}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Servings</label>
+                                <input type="text" class="form-control" th:field="*{servings}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Source</label>
+                                <input type="text" class="form-control" th:field="*{source}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>URL</label>
+                                <input type="text" class="form-control" th:field="*{url}"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Difficulty</label>
+                                <select class="form-control">
+                                    <option>Easy</option>
+                                    <option>Medium</option>
+                                    <option>Hard</option>
+                                </select>
+                            </div>
+                            <div>
+                                <h4>List of Ingredients</h4>
+                                <ul th:if="${not #lists.isEmpty(recipe.ingredients)}">
+                                    <li th:remove="all">1 Cup of milk</li>
+                                    <li th:remove="all">1 Teaspoon of chocolate</li>
+                                    <li th:remove="all">asdf</li>
+                                    <li th:each="ingredient : ${recipe.ingredients}"
+                                        th:text="${(ingredient.getAmount() +
+                                        ' ' + ingredient.unitOfMeasure.getDescription() +
+                                        ' - ' + ingredient.getDescription())}">1 Teaspoon of Sugar
+                                    </li>
+                                </ul>
+                            </div>
+                            <div style="float: right">
+                                <a class="btn btn-success" href="#"
+                                   th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View
+                                    Ingredients</a>
+                            </div>
+                            <div>
+                                <label>Directions</label>
+                                <textarea class="form-control" rows="3" th:field="*{directions}"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Notes</label>
+                                <textarea class="form-control" rows="3" th:field="*{notes.recipeNotes}"></textarea>
+                            </div>
+                            <div style="float:right">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="main-footer" class="bg-dark text-white mt-5 p-4 fixed-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="lead text-center">Fake Copyright &copy; 2018 Recipe App</p>
+            </div>
+        </div>
+    </div>
+</footer>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
