@@ -1,32 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <title>Recipe Project</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
           th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}">
+
+    <style>
+        body {
+            padding-bottom: 120px;
+        }
+    </style>
 </head>
+
 <body>
 
-<h1>Ingredient</h1>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-success p-0">
+    <div class="container">
+        <a href="#" th:href="@{/index}" class="navbar-brand">Recipes</a>
+    </div>
+</nav>
+
+<!-- Header -->
+<header id="main-header" class="py-2 mb-4 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="text-center">Recipe data</h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Recipes -->
+<section id="recipeForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Recipe Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td th:text="${ingredient.id}">334</td>
+                                <td th:text="${ingredient.amount} + ' ' + ${ingredient.unitOfMeasure.getDescription()} + ' ' + ${ingredient.description}">
+                                    Tasty Goodnees 3
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="main-footer" class="bg-dark text-white mt-5 p-4 fixed-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="lead text-center">Fake Copyright &copy; 2018 Recipe App</p>
+            </div>
+        </div>
+    </div>
+</footer>
 
 
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tr>
-        <td th:text="${ingredient.id}">334</td>
-        <td th:text="${ingredient.amount} + ' ' + ${ingredient.unitOfMeasure.getDescription()} + ' ' + ${ingredient.description}">
-            Tasty Goodnees 3
-        </td>
-    </tr>
-</table>
-
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"
+        th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"
+></script>
 </body>
 </html>

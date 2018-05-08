@@ -6,60 +6,98 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
           th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}">
+
+    <style>
+        body {
+            padding-bottom: 120px;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="table-responsive" style="margin-top: 20px">
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Category</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:remove="all">
-            <td scope="row" th:text="${recipe.id}">1</td>
-            <td th:text="${recipe.description}">Tasty</td>
-        </tr>
-        <tr th:remove="all">
-            <td scope="row" th:text="${recipe.id}">2</td>
-            <td th:text="${category.description}">Tasty</td>
-        </tr>
-        <tr>
-            <td th:text="${recipe.id}">123</td>
-            <td th:text="${recipe.description}">Good drinks</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<p th:text="${recipe.description}"></p>
-<p th:text="${recipe.categories}"></p>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-success p-0">
+    <div class="container">
+        <a href="#" th:href="@{/index}" class="navbar-brand">Recipes</a>
+    </div>
+</nav>
 
-<h1>Categories</h1>
-<ul  >
-    <li th:remove="all">Cate one</li>
-    <li th:remove="all">Cate two</li>
-    <!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
-    <li  th:each="category : ${recipe.categories}" th:text="${category.getDescription()}">Cate three</li>
-</ul>
+<!-- Header -->
+<header id="main-header" class="py-2 mb-4 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="text-center">Recipe data</h1>
+            </div>
+        </div>
+    </div>
+</header>
 
-<h1>Ingredients</h1>
+<!-- Recipes -->
+<section id="recipeForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Recipe Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <p th:text="${recipe.description}"></p>
+                        <h1>Categories</h1>
+                        <ul>
+                            <li th:remove="all">Cate one</li>
+                            <li th:remove="all">Cate two</li>
+                            <!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
+                            <li th:each="category : ${recipe.categories}" th:text="${category.getDescription()}">Cate
+                                three
+                            </li>
+                        </ul>
+                        <h1>Ingredients</h1>
+                        <ul>
+                            <li th:remove="all">Cate one</li>
+                            <li th:remove="all">Cate two</li>
+                            <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.getDescription()}">
+                                Cate three
+                            </li>
+                        </ul>
+                        <div>
+                            <label class="font-weight-bold">Difficulty:</label>
+                            <p th:text="${recipe.difficulty}"></p>
+                            <label class="font-weight-bold">Recipe Notes:</label>
+                            <p th:text="${recipe.notes.recipeNotes}"></p>
+                            <label class="font-weight-bold">PrepTime:</label>
+                            <p th:text="${recipe.prepTime}"></p>
+                            <label class="font-weight-bold">CookTime:</label>
+                            <p th:text="${recipe.cookTime}"></p>
+                            <label class="font-weight-bold">Servings:</label>
+                            <p th:text="${recipe.servings}"></p>
+                            <label class="font-weight-bold">Source:</label>
+                            <p th:text="${recipe.source}"></p>
+                            <label class="font-weight-bold">URL:</label>
+                            <p th:text="${recipe.url}"></p>
+                            <label class="font-weight-bold">Directions:</label>
+                            <p th:text="${recipe.directions}"></p>
+                        </div>
+                    </div>
 
-<ul  >
-    <li th:remove="all">Cate one</li>
-    <li th:remove="all">Cate two</li>
-    <li  th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.getDescription()}">Cate three</li>
-</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<p th:text="${recipe.difficulty}"></p>
-<p th:text="${recipe.notes}"></p>
-<p th:text="${recipe.prepTime}"></p>
-<p th:text="${recipe.cookTime}"></p>
-<p th:text="${recipe.servings}"></p>
-<p th:text="${recipe.source}"></p>
-<p th:text="${recipe.url}"></p>
-<p th:text="${recipe.directions}"></p>
+<!-- Footer -->
+<footer id="main-footer" class="bg-dark text-white mt-5 p-4 fixed-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="lead text-center">Fake Copyright &copy; 2018 Recipe App</p>
+            </div>
+        </div>
+    </div>
+</footer>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
