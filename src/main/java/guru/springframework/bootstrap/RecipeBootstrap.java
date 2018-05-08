@@ -11,9 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -104,8 +102,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 " affordable, and smooth.");
         russianNotes.setRecipe(whiteRussianCoffeeRecipe);
         whiteRussianCoffeeRecipe.setNotes(russianNotes);
-
-
+        Set<Category> categorySet = new HashSet<>();
+        categorySet.add(whiteRussian);
+        whiteRussianCoffeeRecipe.setCategories(categorySet);
         whiteRussianCoffeeRecipe.addIngredient(new Ingredient("vodka", BigDecimal.valueOf(2),
                 ounce, whiteRussianCoffeeRecipe));
         whiteRussianCoffeeRecipe.addIngredient(new Ingredient("coffee", BigDecimal.valueOf(1),

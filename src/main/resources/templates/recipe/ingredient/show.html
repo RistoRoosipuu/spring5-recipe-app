@@ -42,6 +42,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Recipe Information</h4>
+                        <a class="btn btn-success" href="#"
+                           th:href="@{'/recipe/' + ${recipeId} + '/ingredients'}" role="button">Return to
+                            Ingredients</a>
                     </div>
                     <div class="card-body">
                         <table>
